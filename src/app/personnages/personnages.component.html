@@ -1,1 +1,23 @@
-<p>personnages works!</p>
+<hr>
+<div class="container">
+  <h1>List des Personnages</h1>
+</div>
+<div class="d-flex flex-wrap">
+  <div *ngFor="let character of characters; let i = index">
+    <div class="card align-items-center">
+      <img [src]="character.image" class="card-img-top" alt="{{ character.name }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ character.name}} <i [ngClass]="character.icon" class="redIcons"></i></h5>
+        <p class="card-text">Majeur: <input type="checkbox" [checked]="character.isMajor"></p>
+        <p class="card-text badge rounded-pill bg-secondary">Followers: {{ character.followers }}</p>
+        <hr>
+        <button *ngIf="isSubscribed(i)" class="btn btn-primary" (click)="aboonner(i)">S'abonner <i class="fa-solid fa-plus"></i></button>
+        <button *ngIf="!isSubscribed(i)"class="btn btn-danger" (click)="desabonner(i)">Désabonner <i class="fa-solid fa-minus"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <h1>Le nombre de personnes majeurs est: {{characters.length}}</h1>
+</div>
